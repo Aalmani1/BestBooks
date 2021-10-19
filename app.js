@@ -152,17 +152,9 @@ function addToFave() {
       for (let x = 0; x < favaoret.length; x++) {
         console.log(favaoret[x].rank);
 
-        if (favaoret[x].rank == true) {
-          // favaoret.splice(x, 1);
+        if (favaoret[x].rank == favaoret[i].rank) {
+          favaoret.splice(favaoret[i], 1);
 
-          divB.removeChild(h4);
-          divB.removeChild(h6);
-          divB.removeChild(p);
-          divB.removeChild(button);
-
-          cardH.removeChild(img1);
-          cardH.removeChild(divB);
-          divCol.removeChild(cardH);
           mainFave.removeChild(divCol);
 
           saveFave();
