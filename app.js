@@ -47,7 +47,7 @@ fetch(url)
 
           img1.src = img;
           h4.innerText = title;
-          h6.innerText = author;
+          h6.innerText = "Author: " + author;
           p.innerText = description;
           button.innerText = "Add To Fave";
 
@@ -134,7 +134,7 @@ function addToFave() {
 
     img1.src = img;
     h4.innerText = title;
-    h6.innerText = author;
+    h6.innerText = "Author: " + author;
     p.innerText = description;
     button.innerText = "Remove";
 
@@ -167,89 +167,106 @@ function addToFave() {
   } //for
 } //function
 
-function search() {
-  let main = document.getElementById("main");
-  let search = document.getElementById("search");
+// ============================ search ============================
 
-  let serchBar = document.getElementById("myInput");
-  // console.log(serchBar);
+//function search() {
+let main = document.getElementById("main");
+let search = document.getElementById("search");
+let searchBtn = document.getElementById("searchBtn");
 
-  serchBar.addEventListener("keyup", (e) => {
-    let searchString = e.target.value;
-    let filterBook = element.filter((elem) => {
-      return (
-        elem.title.includes(searchString) || elem.author.includes(searchString)
-      );
-    });
-    console.log(searchString);
-
-    for (let i = 0; i < filterBook.length; i++) {
-      main.style.display = "none";
-      console.log("test");
-
-      let img = filterBook[i].book_image;
-      let title = filterBook[i].title;
-      let author = filterBook[i].author;
-      let description = filterBook[i].description;
-      // let div = document.createElement("div");
-      let divCol = document.createElement("div");
-      let cardH = document.createElement("div");
-      let divB = document.createElement("div");
-      let img1 = document.createElement("img");
-      let h4 = document.createElement("h4");
-      let h6 = document.createElement("h6");
-      let p = document.createElement("p");
-      let button = document.createElement("button");
-
-      divCol.className = "col";
-      cardH.className = "card h-100";
-      divB.className = "card-body";
-      img1.className = "card-img-top";
-      h4.className = "card-title";
-      h6.className = "card-author";
-      p.className = "card-text";
-      button.className = "btn btn-lg btn-success";
-
-      img1.src = img;
-      h4.innerText = title;
-      h6.innerText = author;
-      p.innerText = description;
-      button.innerText = "Add To Fave";
-
-      divB.appendChild(h4);
-      divB.appendChild(h6);
-      divB.appendChild(p);
-      divB.appendChild(button);
-
-      cardH.appendChild(img1);
-      cardH.appendChild(divB);
-      divCol.appendChild(cardH);
-      search.appendChild(divCol);
-
-      // console.log(main);
-      main.innerHTML = main.outerHTML;
-
-      /// ====================== Button add to fave ====================
-
-      button.addEventListener("click", function () {
-        let check = false;
-        for (let x = 0; x < favaoret.length; x++) {
-          console.log(favaoret[x].rank);
-          if (element[i].rank == favaoret[x].rank) {
-            alert("Already Add To Fave");
-            check = true;
-            // console.log(favaoret[x]);
-            break;
-          }
-        }
-        if (!check) {
-          favaoret.push(element[i]);
-          alert("Add To Fave");
-          saveFave();
-        }
-      });
-
-      /// ====================== Button add to fave ====================
-    }
+searchBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  // let searchString = document.getElementById("myInput").value;
+  console.log(document.getElementById("myInput"));
+  let filterBook = element.filter((elem) => {
+    return (
+      elem.title.includes(document.getElementById("myInput").value) ||
+      elem.author.includes(document.getElementById("myInput").value)
+    );
   });
-}
+  // console.log(searchString);
+
+  for (let i = 0; i < filterBook.length; i++) {
+    main.style.display = "none";
+    console.log("test");
+
+    let img = filterBook[i].book_image;
+    let title = filterBook[i].title;
+    let author = filterBook[i].author;
+    let description = filterBook[i].description;
+    // let div = document.createElement("div");
+    let divCol = document.createElement("div");
+    let cardH = document.createElement("div");
+    let divB = document.createElement("div");
+    let img1 = document.createElement("img");
+    let h4 = document.createElement("h4");
+    let h6 = document.createElement("h6");
+    let p = document.createElement("p");
+    let button = document.createElement("button");
+
+    divCol.className = "col";
+    cardH.className = "card h-100";
+    divB.className = "card-body";
+    img1.className = "card-img-top";
+    h4.className = "card-title";
+    h6.className = "card-author";
+    p.className = "card-text";
+    button.className = "btn btn-lg btn-success";
+
+    img1.src = img;
+    h4.innerText = title;
+    h6.innerText = "Author: " + author;
+    p.innerText = description;
+    button.innerText = "Add To Fave";
+
+    divB.appendChild(h4);
+    divB.appendChild(h6);
+    divB.appendChild(p);
+    divB.appendChild(button);
+
+    cardH.appendChild(img1);
+    cardH.appendChild(divB);
+    divCol.appendChild(cardH);
+    search.appendChild(divCol);
+
+    // console.log(main);
+    main.innerHTML = main.outerHTML;
+
+    /// ====================== Button add to fave ====================
+
+    button.addEventListener("click", function () {
+      let check = false;
+      for (let x = 0; x < favaoret.length; x++) {
+        console.log(favaoret[x].rank);
+        if (element[i].rank == favaoret[x].rank) {
+          alert("Already Add To Fave");
+          check = true;
+          // console.log(favaoret[x]);
+          break;
+        }
+      }
+      if (!check) {
+        favaoret.push(element[i]);
+        alert("Add To Fave");
+        saveFave();
+      }
+    });
+
+    /// ====================== Button add to fave ====================
+  }
+});
+//}
+
+// function search() {
+//   // let search = document.getElementById("search");
+//   let serchBar = document.getElementById("myInput");
+
+//   // console.log(serchBar);
+//   serchBar.addEventListener("keyup", (e) => {
+//     let searchString = e.target.value;
+//     let filterBook = element.filter((elem) => {
+//       return elem.title.includes(searchString);
+//     });
+//     console.log(filterBook);
+//   });
+// }
